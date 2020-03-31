@@ -11,5 +11,31 @@
 
     <artifactId>web</artifactId>
 
+<dependencies>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <dependency>
+        <artifactId>service</artifactId>
+        <groupId>com.project.nairon</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+
+
+</dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
