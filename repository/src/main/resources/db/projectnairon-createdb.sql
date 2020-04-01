@@ -230,11 +230,11 @@ DROP TABLE IF EXISTS `NaironDB`.`Admin` ;
 
 CREATE TABLE IF NOT EXISTS `NaironDB`.`Admin` (
   `adminId` INT NOT NULL,
-  `NaironUser_email` VARCHAR(100) NOT NULL,
+  `naironUserEmail` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`adminId`),
-  INDEX `fk_Admin_NaironUser1_idx` (`NaironUser_email` ASC),
+  INDEX `fk_Admin_NaironUser1_idx` (`naironUserEmail` ASC),
   CONSTRAINT `fk_Admin_NaironUser1`
-    FOREIGN KEY (`NaironUser_email`)
+    FOREIGN KEY (`naironUserEmail`)
     REFERENCES `NaironDB`.`NaironUser` (`email`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
