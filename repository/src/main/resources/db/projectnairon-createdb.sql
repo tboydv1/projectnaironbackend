@@ -5,41 +5,42 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema NaironDB
+-- Schema nairondb
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema NaironDB
+-- Schema nairondb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `NaironDB` DEFAULT CHARACTER SET utf8 ;
-USE `NaironDB` ;
+DROP DATABASE nairondb;
+CREATE SCHEMA IF NOT EXISTS `nairondb` DEFAULT CHARACTER SET utf8 ;
+USE `nairondb`;
 
 -- -----------------------------------------------------
--- Table `NaironDB`.`NaironUser`
+-- Table `nairondb`.`nairon_user`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `NaironDB`.`NaironUser` ;
+DROP TABLE IF EXISTS `nairondb`.`nairon_user` ;
 
-CREATE TABLE IF NOT EXISTS `NaironDB`.`NaironUser` (
-  `naironUserId` INT(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `nairondb`.`nairon_user` (
+  `nairon_user_id` INT(10) NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(100) NOT NULL,
-  `phoneNumber` VARCHAR(45) NOT NULL,
+  `phone_number` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `fullName` VARCHAR(100) NULL,
-  `businessSector` VARCHAR(100) NULL,
-  `businessName` VARCHAR(100) NULL,
+  `full_name` VARCHAR(100) NULL,
+  `business_sector` VARCHAR(100) NULL,
+  `business_name` VARCHAR(100) NULL,
   `gender` VARCHAR(45) NULL,
   `role` VARCHAR(45) NULL,
-  PRIMARY KEY (`naironUserId`, `email`),
+  PRIMARY KEY (`nairon_user_id`, `email`),
   INDEX `email_index` (`email` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `NaironDB`.`PublisherWallet`
+-- Table `nairondb`.`publisher_wallet`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `NaironDB`.`PublisherWallet` ;
+DROP TABLE IF EXISTS `nairondb`.`publisher_wallet` ;
 
-CREATE TABLE IF NOT EXISTS `NaironDB`.`PublisherWallet` (
+CREATE TABLE IF NOT EXISTS `nairondb`.`publisher_wallet` (
   `walletId` INT NOT NULL,
   `walletBalance` DECIMAL NULL,
   PRIMARY KEY (`walletId`))
@@ -47,11 +48,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `NaironDB`.`AdvertiserWallet`
+-- Table `nairondb`.`advertiser_wallet`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `NaironDB`.`AdvertiserWallet` ;
+DROP TABLE IF EXISTS `nairondb`.`advertiser_wallet` ;
 
-CREATE TABLE IF NOT EXISTS `NaironDB`.`AdvertiserWallet` (
+CREATE TABLE IF NOT EXISTS `nairondb`.`advertiser_wallet` (
   `walletId` INT NOT NULL,
   `walletBalance` DOUBLE NULL,
   PRIMARY KEY (`walletId`))
@@ -59,183 +60,183 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `NaironDB`.`Transcation`
+-- Table `nairondb`.`transaction`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `NaironDB`.`Transcation` ;
+DROP TABLE IF EXISTS `nairondb`.`transaction` ;
 
-CREATE TABLE IF NOT EXISTS `NaironDB`.`Transcation` (
-  `transcationId` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `nairondb`.`transaction` (
+  `transactionId` INT NOT NULL,
   `transactionType` VARCHAR(45) NOT NULL,
   `transactionDate` VARCHAR(45) NOT NULL,
-  `advertiserWalletId` INT NOT NULL,
-  `publisherWalletId` INT NOT NULL,
-  PRIMARY KEY (`transcationId`),
-  INDEX `fk_Transcation_AdvertiserWallet1_idx` (`advertiserWalletId` ASC),
-  INDEX `fk_Transcation_PublisherWallet1_idx` (`publisherWalletId` ASC),
-  CONSTRAINT `fk_Transcation_AdvertiserWallet1`
-    FOREIGN KEY (`advertiserWalletId`)
-    REFERENCES `NaironDB`.`AdvertiserWallet` (`walletId`)
+  `advertiser_walletId` INT NOT NULL,
+  `publisher_walletId` INT NOT NULL,
+  PRIMARY KEY (`transactionId`),
+  INDEX `fk_transaction_advertiser_wallet1_idx` (`advertiser_walletId` ASC),
+  INDEX `fk_transaction_publisher_wallet1_idx` (`publisher_walletId` ASC),
+  CONSTRAINT `fk_transaction_advertiser_wallet1`
+    FOREIGN KEY (`advertiser_walletId`)
+    REFERENCES `nairondb`.`advertiser_wallet` (`walletId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Transcation_PublisherWallet1`
-    FOREIGN KEY (`publisherWalletId`)
-    REFERENCES `NaironDB`.`PublisherWallet` (`walletId`)
+  CONSTRAINT `fk_transaction_publisher_wallet1`
+    FOREIGN KEY (`publisher_walletId`)
+    REFERENCES `nairondb`.`publisher_wallet` (`walletId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `NaironDB`.`Advertiser`
+-- Table `nairondb`.`advertiser`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `NaironDB`.`Advertiser` ;
+DROP TABLE IF EXISTS `nairondb`.`advertiser` ;
 
-CREATE TABLE IF NOT EXISTS `NaironDB`.`Advertiser` (
+CREATE TABLE IF NOT EXISTS `nairondb`.`advertiser` (
   `advertiserId` INT NOT NULL AUTO_INCREMENT,
-  `advertiserWalletId` INT NOT NULL,
-  `naironUserEmail` VARCHAR(100) NOT NULL,
-  PRIMARY KEY (`advertiserId`, `naironUserEmail`),
-  INDEX `fk_AdvertiserUser_Awallet1_idx` (`advertiserWalletId` ASC),
-  INDEX `fk_AdvertiserUser_NaironUser1_idx` (`naironUserEmail` ASC),
-  CONSTRAINT `fk_AdvertiserUser_Awallet1`
-    FOREIGN KEY (`advertiserWalletId`)
-    REFERENCES `NaironDB`.`AdvertiserWallet` (`walletId`)
+  `advertiser_walletId` INT NOT NULL,
+  `naironuserEmail` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`advertiserId`, `naironuserEmail`),
+  INDEX `fk_advertiserUser_Awallet1_idx` (`advertiser_walletId` ASC),
+  INDEX `fk_advertiserUser_nairon_user1_idx` (`naironuserEmail` ASC),
+  CONSTRAINT `fk_advertiserUser_Awallet1`
+    FOREIGN KEY (`advertiser_walletId`)
+    REFERENCES `nairondb`.`advertiser_wallet` (`walletId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_AdvertiserUser_NaironUser1`
-    FOREIGN KEY (`naironUserEmail`)
-    REFERENCES `NaironDB`.`NaironUser` (`email`)
+  CONSTRAINT `fk_advertiserUser_nairon_user1`
+    FOREIGN KEY (`naironuserEmail`)
+    REFERENCES `nairondb`.`nairon_user` (`email`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `NaironDB`.`AdvertBudget`
+-- Table `nairondb`.`advert_budget`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `NaironDB`.`AdvertBudget` ;
+DROP TABLE IF EXISTS `nairondb`.`advert_budget` ;
 
-CREATE TABLE IF NOT EXISTS `NaironDB`.`AdvertBudget` (
-  `advertBudgetId` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `nairondb`.`advert_budget` (
+  `advert_budgetId` INT NOT NULL,
   `budgetAmount` DOUBLE NULL,
   `budgetBalance` DOUBLE NULL,
   `budgetPerDay` DOUBLE NULL,
   `standingOrder` VARCHAR(45) NULL,
-  PRIMARY KEY (`advertBudgetId`))
+  PRIMARY KEY (`advert_budgetId`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `NaironDB`.`Advert`
+-- Table `nairondb`.`advert`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `NaironDB`.`Advert` ;
+DROP TABLE IF EXISTS `nairondb`.`advert` ;
 
-CREATE TABLE IF NOT EXISTS `NaironDB`.`Advert` (
+CREATE TABLE IF NOT EXISTS `nairondb`.`advert` (
   `advertId` INT NOT NULL,
   `advertiserUser` INT NOT NULL,
-  `advertBudgetId` INT NOT NULL,
+  `advert_budgetId` INT NOT NULL,
   `advertDuration` VARCHAR(45) NOT NULL,
-  INDEX `fk_Advert_AdvertiserUser1_idx` (`advertiserUser` ASC),
+  INDEX `fk_advert_advertiserUser1_idx` (`advertiserUser` ASC),
   PRIMARY KEY (`advertId`),
-  INDEX `fk_Advert_AdvertBudget1_idx` (`advertBudgetId` ASC),
-  CONSTRAINT `fk_Advert_AdvertiserUser1`
+  INDEX `fk_advert_advert_budget1_idx` (`advert_budgetId` ASC),
+  CONSTRAINT `fk_advert_advertiserUser1`
     FOREIGN KEY (`advertiserUser`)
-    REFERENCES `NaironDB`.`Advertiser` (`advertiserId`)
+    REFERENCES `nairondb`.`advertiser` (`advertiserId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Advert_AdvertBudget1`
-    FOREIGN KEY (`advertBudgetId`)
-    REFERENCES `NaironDB`.`AdvertBudget` (`advertBudgetId`)
+  CONSTRAINT `fk_advert_advert_budget1`
+    FOREIGN KEY (`advert_budgetId`)
+    REFERENCES `nairondb`.`advert_budget` (`advert_budgetId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `NaironDB`.`Publisher`
+-- Table `nairondb`.`publisher`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `NaironDB`.`Publisher` ;
+DROP TABLE IF EXISTS `nairondb`.`publisher` ;
 
-CREATE TABLE IF NOT EXISTS `NaironDB`.`Publisher` (
+CREATE TABLE IF NOT EXISTS `nairondb`.`publisher` (
   `publisherId` INT NOT NULL,
-  `publisherWalletId` INT NOT NULL,
-  `naironUserEmail` VARCHAR(100) NOT NULL,
-  `publishedAdvertId` INT NULL,
+  `publisher_walletId` INT NOT NULL,
+  `naironuserEmail` VARCHAR(100) NOT NULL,
+  `publishedadvertId` INT NULL,
   `blogUrl` VARCHAR(45) NULL,
-  PRIMARY KEY (`publisherId`, `naironUserEmail`),
-  INDEX `fk_PublisherUser_Pwallet1_idx` (`publisherWalletId` ASC),
-  INDEX `fk_PublisherUser_NaironUser1_idx` (`naironUserEmail` ASC),
-  INDEX `fk_Publisher_Advert1_idx` (`publishedAdvertId` ASC),
-  CONSTRAINT `fk_PublisherUser_Pwallet1`
-    FOREIGN KEY (`publisherWalletId`)
-    REFERENCES `NaironDB`.`PublisherWallet` (`walletId`)
+  PRIMARY KEY (`publisherId`, `naironuserEmail`),
+  INDEX `fk_publisherUser_Pwallet1_idx` (`publisher_walletId` ASC),
+  INDEX `fk_publisherUser_nairon_user1_idx` (`naironuserEmail` ASC),
+  INDEX `fk_publisher_advert1_idx` (`publishedadvertId` ASC),
+  CONSTRAINT `fk_publisherUser_Pwallet1`
+    FOREIGN KEY (`publisher_walletId`)
+    REFERENCES `nairondb`.`publisher_wallet` (`walletId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_PublisherUser_NaironUser1`
-    FOREIGN KEY (`naironUserEmail`)
-    REFERENCES `NaironDB`.`NaironUser` (`email`)
+  CONSTRAINT `fk_publisherUser_nairon_user1`
+    FOREIGN KEY (`naironuserEmail`)
+    REFERENCES `nairondb`.`nairon_user` (`email`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Publisher_Advert1`
-    FOREIGN KEY (`publishedAdvertId`)
-    REFERENCES `NaironDB`.`Advert` (`advertId`)
+  CONSTRAINT `fk_publisher_advert1`
+    FOREIGN KEY (`publishedadvertId`)
+    REFERENCES `nairondb`.`advert` (`advertId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `NaironDB`.`AdvertQuestion`
+-- Table `nairondb`.`advertQuestion`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `NaironDB`.`AdvertQuestion` ;
+DROP TABLE IF EXISTS `nairondb`.`advertQuestion` ;
 
-CREATE TABLE IF NOT EXISTS `NaironDB`.`AdvertQuestion` (
+CREATE TABLE IF NOT EXISTS `nairondb`.`advertQuestion` (
   `advertQuestionId` INT NOT NULL,
   `advertId` INT NOT NULL,
   `question` VARCHAR(45) NULL,
   PRIMARY KEY (`advertQuestionId`),
-  INDEX `fk_AdvertQuestion_Advert1_idx` (`advertId` ASC),
-  CONSTRAINT `fk_AdvertQuestion_Advert1`
+  INDEX `fk_advertQuestion_advert1_idx` (`advertId` ASC),
+  CONSTRAINT `fk_advertQuestion_advert1`
     FOREIGN KEY (`advertId`)
-    REFERENCES `NaironDB`.`Advert` (`advertId`)
+    REFERENCES `nairondb`.`advert` (`advertId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `NaironDB`.`AdvertAnswer`
+-- Table `nairondb`.`advertAnswer`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `NaironDB`.`AdvertAnswer` ;
+DROP TABLE IF EXISTS `nairondb`.`advertAnswer` ;
 
-CREATE TABLE IF NOT EXISTS `NaironDB`.`AdvertAnswer` (
+CREATE TABLE IF NOT EXISTS `nairondb`.`advertAnswer` (
   `advertAnswerId` INT NOT NULL,
   `advertQuestionId` INT NOT NULL,
   `answer` VARCHAR(45) NULL,
   PRIMARY KEY (`advertAnswerId`),
-  INDEX `fk_AdvertAnswer_AdvertQuestion1_idx` (`advertQuestionId` ASC),
+  INDEX `fk_advertAnswer_advertQuestion1_idx` (`advertQuestionId` ASC),
   UNIQUE INDEX `answer_UNIQUE` (`answer` ASC),
-  CONSTRAINT `fk_AdvertAnswer_AdvertQuestion1`
+  CONSTRAINT `fk_advertAnswer_advertQuestion1`
     FOREIGN KEY (`advertQuestionId`)
-    REFERENCES `NaironDB`.`AdvertQuestion` (`advertQuestionId`)
+    REFERENCES `nairondb`.`advertQuestion` (`advertQuestionId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `NaironDB`.`Admin`
+-- Table `nairondb`.`admin`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `NaironDB`.`Admin` ;
+DROP TABLE IF EXISTS `nairondb`.`admin` ;
 
-CREATE TABLE IF NOT EXISTS `NaironDB`.`Admin` (
+CREATE TABLE IF NOT EXISTS `nairondb`.`admin` (
   `adminId` INT NOT NULL,
-  `naironUserEmail` VARCHAR(100) NOT NULL,
+  `naironuserEmail` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`adminId`),
-  INDEX `fk_Admin_NaironUser1_idx` (`naironUserEmail` ASC),
-  CONSTRAINT `fk_Admin_NaironUser1`
-    FOREIGN KEY (`naironUserEmail`)
-    REFERENCES `NaironDB`.`NaironUser` (`email`)
+  INDEX `fk_admin_nairon_user1_idx` (`naironuserEmail` ASC),
+  CONSTRAINT `fk_admin_nairon_user1`
+    FOREIGN KEY (`naironuserEmail`)
+    REFERENCES `nairondb`.`nairon_user` (`email`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
