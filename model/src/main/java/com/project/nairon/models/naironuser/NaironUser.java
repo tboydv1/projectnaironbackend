@@ -3,29 +3,38 @@ package com.project.nairon.models.naironuser;
 import javax.persistence.*;
 
 @Entity
-@Table(name =  "NaironUser")
-@IdClass(NaironUserId.class)
+@Table(name =  "nairon_user")
+//@IdClass(NaironUserId.class)
 public class NaironUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "nairon_user_id")
     private Long naironUserId;
 
-    @Id
+//    @Id
+    @Column(name = "email")
     private String email;
 
+    @Column(name = "phone_number")
     private String phoneNumber;
 
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "full_name")
     private String fullname;
 
+    @Column(name = "business_sector")
     private String businessSector;
 
+    @Column(name = "business_name")
     private String businessName;
 
+    @Column(name = "gender")
     private String gender;
 
+    @Column(name = "role")
     private String role;
 
     public Long getNaironUserId() {
