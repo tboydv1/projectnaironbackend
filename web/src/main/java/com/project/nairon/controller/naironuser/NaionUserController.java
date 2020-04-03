@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +20,11 @@ public class NaionUserController {
 
     @Autowired
     private NaironUserService naironUserService;
+
+    @GetMapping("/")
+    public String test() {
+        return "Application is live and running";
+    }
 
     @PostMapping("/user/start")
     public ResponseEntity<NaironUser> registerUserAccount(NaironUserDTO naironUserDTO, HttpRequest request){

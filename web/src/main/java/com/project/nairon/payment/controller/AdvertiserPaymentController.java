@@ -15,20 +15,25 @@ import com.project.nairon.flutter.payment.service.TransferService;
  * @author gbemisola
  *
  */
-@RestController
-public class AdvertiserPaymentController {
-	
-	@Autowired
-	TransferService transferService;
-	
-	@GetMapping("/")
-	public String test() {
-		return "Hello FlutterWave";
-	}
-	
-	@PostMapping("/transfer")
-	public void doTransfer(transferPayload transferPayload) {
-		transferService.dotransfer(transferPayload);
-	}
-
-}
+//@RestController
+//public class AdvertiserPaymentController {
+//
+//	private TransferService transferService;
+//
+//	@Autowired
+//	public AdvertiserPaymentController(TransferService transferService){
+//		this.transferService = transferService;
+//	}
+//
+//
+//	@GetMapping("/")
+//	public String test() {
+//		return "Hello FlutterWave";
+//	}
+//
+//	@PostMapping("/transfer")
+//	public void doTransfer(transferPayload transferPayload) {
+//		transferService.dotransfer(transferPayload);
+//	}
+//
+//}
