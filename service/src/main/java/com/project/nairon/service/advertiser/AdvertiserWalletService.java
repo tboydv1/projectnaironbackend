@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.nairon.models.advertiser.AdvertiserWallet;
 import com.project.nairon.repository.advertiser.AdvertiserWalletRepository;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.transaction.Transactional;
 
@@ -18,13 +19,13 @@ import javax.transaction.Transactional;
  *
  */
 @Service
-@Transactional
 public class AdvertiserWalletService {
-	
-	
+
+
 	@Autowired
 	AdvertiserWalletRepository repo;
-	
+
+
 	public void saveToAdvertiserWallet(AdvertiserWallet advertiserWallet) {
 		//use logger here -- TOBI
 		System.out.print("Hello");
