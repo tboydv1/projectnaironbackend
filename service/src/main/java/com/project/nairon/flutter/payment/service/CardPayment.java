@@ -19,11 +19,14 @@ import com.flutterwave.rave.java.payload.splitaddPayload;
 import com.flutterwave.rave.java.payload.suggestedload;
 import com.flutterwave.rave.java.service.PaymentServices;
 import com.flutterwave.rave.java.util.TripleDES;
+import org.springframework.stereotype.Component;
 
 /**
  * @author gbemisola
  *
  */
+
+@Component
 public class CardPayment {
 	
 	public String doflwcardpayment(cardLoad cardload) throws UnknownHostException {

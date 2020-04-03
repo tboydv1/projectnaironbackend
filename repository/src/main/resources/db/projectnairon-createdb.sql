@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `nairondb`.`transaction` (
   INDEX `fk_transaction_publisher_wallet1_idx` (`publisher_walletId` ASC),
   CONSTRAINT `fk_transaction_advertiser_wallet1`
     FOREIGN KEY (`advertiser_walletId`)
-    REFERENCES `nairondb`.`advertiser_wallet` (`walletId`)
+    REFERENCES `nairondb`.`advertiser_wallet` (`wallet_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_transaction_publisher_wallet1`
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `nairondb`.`advertiser` (
   INDEX `fk_advertiserUser_nairon_user1_idx` (`naironuserEmail` ASC),
   CONSTRAINT `fk_advertiserUser_Awallet1`
     FOREIGN KEY (`advertiser_walletId`)
-    REFERENCES `nairondb`.`advertiser_wallet` (`walletId`)
+    REFERENCES `nairondb`.`advertiser_wallet` (`wallet_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_advertiserUser_nairon_user1`

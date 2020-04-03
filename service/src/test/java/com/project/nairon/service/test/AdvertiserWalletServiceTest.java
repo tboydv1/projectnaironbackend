@@ -6,6 +6,7 @@ package com.project.nairon.service.test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
+import com.project.nairon.ServiceConfig;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,11 +22,12 @@ import com.project.nairon.service.advertiser.AdvertiserWalletService;
  * @author gbemisola
  *
  */
-@SpringBootTest(classes = RepositoryConfig.class)
+@SpringBootTest(classes = ServiceConfig.class)
 class AdvertiserWalletServiceTest {
 	
-	
-	AdvertiserWalletService advertWalletService = new AdvertiserWalletService() ;
+
+	@Autowired
+	AdvertiserWalletService advertWalletService;
 
 	/**
 	 * @throws java.lang.Exception
