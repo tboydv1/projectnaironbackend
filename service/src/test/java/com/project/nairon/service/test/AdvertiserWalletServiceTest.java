@@ -21,12 +21,10 @@ import com.project.nairon.service.advertiser.AdvertiserWalletService;
  * @author gbemisola
  *
  */
-@SpringBootTest(classes = RepositoryConfig.class)
+
 class AdvertiserWalletServiceTest {
 	
 	
-	AdvertiserWalletService advertWalletService = new AdvertiserWalletService() ;
-
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -41,19 +39,7 @@ class AdvertiserWalletServiceTest {
 	void setUp() throws Exception {
 	}
 
-	@Test
-	void testSaveAdvertiserWalletMethod() {
-		
-		AdvertiserWallet newWallet = new AdvertiserWallet(10090L,800.00);
-		assertNotNull(newWallet);
-		
-		advertWalletService.saveToAdvertiserWallet(newWallet);
-
-	}
-	@Test 
-	void testNull() {
-		assertNotNull(advertWalletService);
-	}
+	
 	
 
 }
