@@ -24,7 +24,9 @@ import com.project.nairon.repository.advertiser.AdvertiserWalletRepository;
  *
  */
 @SpringBootTest(classes = RepositoryConfig.class)
-class AdvertiserWalletTest {
+class AdvertiserWalletRepositoryTest {
+
+
 	@Autowired
 	AdvertiserWalletRepository repo;
 

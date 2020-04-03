@@ -3,6 +3,7 @@
  */
 package com.project.nairon.models.advertiser;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -16,9 +17,11 @@ import javax.persistence.Table;
 public class AdvertiserWallet {
 
 	@Id
-	private Long wallet_id;
-	
-	private double wallet_balance;
+	@Column(name = "wallet_id")
+	private Long walletId;
+
+	@Column(name="wallet_balance")
+	private double walletBalance;
 	
 	
 	
@@ -27,24 +30,24 @@ public class AdvertiserWallet {
 	}
 
 
-	public AdvertiserWallet(Long wallet_id, double wallet_balance) {
+	public AdvertiserWallet(Long walletId, double walletBalance) {
 		super();
-		this.wallet_id = wallet_id;
-		this.wallet_balance = wallet_balance;
+		this.walletId = walletId;
+		this.walletBalance = walletBalance;
 	}
 	
 	
 	public Long getWalletId() {
-		return wallet_id;
+		return walletId;
 	}
 	public void setWalletId(Long wallet_id) {
-		this.wallet_id = wallet_id;
+		this.walletId = wallet_id;
 	}
 	public double getWalletBalance() {
-		return wallet_balance;
+		return walletBalance;
 	}
 	public void setWalletBalance(double wallet_balance) {
-		this.wallet_balance = wallet_balance;
+		this.walletBalance = wallet_balance;
 	}
 
 
@@ -52,9 +55,9 @@ public class AdvertiserWallet {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("AdvertiserWallet [walletId=");
-		builder.append(wallet_id);
+		builder.append(walletId);
 		builder.append(", walletBalance=");
-		builder.append(wallet_balance);
+		builder.append(walletBalance);
 		builder.append("]");
 		return builder.toString();
 	}

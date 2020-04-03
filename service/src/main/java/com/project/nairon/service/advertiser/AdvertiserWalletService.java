@@ -10,21 +10,25 @@ import org.springframework.stereotype.Service;
 import com.project.nairon.models.advertiser.AdvertiserWallet;
 import com.project.nairon.repository.advertiser.AdvertiserWalletRepository;
 
+import javax.transaction.Transactional;
+
 
 /**
  * @author gbemisola
  *
  */
 @Service
+@Transactional
 public class AdvertiserWalletService {
 	
 	
-	@Autowired AdvertiserWalletRepository repo;
+	@Autowired
+	AdvertiserWalletRepository repo;
 	
 	public void saveToAdvertiserWallet(AdvertiserWallet advertiserWallet) {
-		
+		//use logger here -- TOBI
 		System.out.print("Hello");
-		 repo.save(advertiserWallet);
+		repo.save(advertiserWallet);
 	}
 	
 

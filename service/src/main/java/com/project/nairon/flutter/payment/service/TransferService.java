@@ -29,8 +29,7 @@ import com.flutterwave.rave.java.service.transferServices;
  */
 public class TransferService {
 	
-	private static final Logger LOG = Logger
-.getLogger(TransferService.class);
+	private static final Logger LOG = Logger.getLogger(TransferService.class);
 	
 	
 	 public String dotransfer(transferPayload transferPayload) {
