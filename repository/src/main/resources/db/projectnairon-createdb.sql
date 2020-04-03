@@ -53,9 +53,9 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `nairondb`.`advertiser_wallet` ;
 
 CREATE TABLE IF NOT EXISTS `nairondb`.`advertiser_wallet` (
-  `walletId` INT NOT NULL,
-  `walletBalance` DOUBLE NULL,
-  PRIMARY KEY (`walletId`))
+  `wallet_id` INT NOT NULL,
+  `wallet_balance` DOUBLE NULL,
+  PRIMARY KEY (`wallet_id`))
 ENGINE = InnoDB;
 
 
