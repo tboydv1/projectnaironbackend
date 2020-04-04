@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.project.nairon.flutter.payment.service;
+package com.project.nairon.service.payment;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,15 +22,17 @@ import com.flutterwave.rave.java.config.raveConfig;
 import com.flutterwave.rave.java.payload.bulkPayload;
 import com.flutterwave.rave.java.payload.transferPayload;
 import com.flutterwave.rave.java.service.transferServices;
+import org.springframework.stereotype.Component;
 
 /**
  * @author gbemisola
  *
  */
+
+@Component
 public class TransferService {
 	
-	private static final Logger LOG = Logger
-.getLogger(TransferService.class);
+	private static final Logger LOG = Logger.getLogger(TransferService.class);
 	
 	
 	 public String dotransfer(transferPayload transferPayload) {

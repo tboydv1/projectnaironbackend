@@ -1,37 +1,32 @@
 /**
  * 
  */
-package com.project.nairon.service.test;
+package com.project.nairon.repository.test;
+import org.junit.runner.RunWith;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
-import com.project.nairon.ServiceConfig;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.project.nairon.models.advertiser.AdvertiserWallet;
 import com.project.nairon.repository.RepositoryConfig;
-import com.project.nairon.service.advertiser.AdvertiserWalletService;
-
+import com.project.nairon.repository.advertiser.AdvertiserWalletRepository;
 
 /**
  * @author gbemisola
  *
  */
-
-	
-
-@SpringBootTest(classes = ServiceConfig.class)
-class AdvertiserWalletServiceTest {
-	
-
+@SpringBootTest(classes = RepositoryConfig.class)
+class AdvertiserWalletTest {
 	@Autowired
-	AdvertiserWalletService advertWalletService;
-
+	AdvertiserWalletRepository repo;
 
 	/**
 	 * @throws java.lang.Exception
@@ -47,7 +42,11 @@ class AdvertiserWalletServiceTest {
 	void setUp() throws Exception {
 	}
 
-	
-	
+	@Test
+	void test() {
+		AdvertiserWallet newWallet = new AdvertiserWallet(10L,60.00);
+		repo.save(newWallet);
+		assertEquals(60.00, newWallet.getWalletBalance());
+	}
 
 }

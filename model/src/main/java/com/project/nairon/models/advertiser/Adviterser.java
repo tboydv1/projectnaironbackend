@@ -12,7 +12,7 @@ public class Adviterser {
     private Long advertiserId;
 
     @OneToOne
-    @JoinColumn()
+    @JoinColumn(referencedColumnName = "email")
     private NaironUser naironUserEmail;
 
     //add advertiser wallet id variable here
