@@ -41,7 +41,7 @@ public class NaionUserController {
 
         NaironUser registered = naironUserService.registerNewUserAccount(naironUserDTO);
 
-        return new ResponseEntity<>(registered, HttpStatus.OK);
+        return new ResponseEntity<>(registered, HttpStatus.CREATED);
     }
 
 }
