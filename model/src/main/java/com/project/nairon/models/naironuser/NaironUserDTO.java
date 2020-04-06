@@ -6,14 +6,13 @@ import javax.validation.constraints.NotNull;
 
 
 //web validation constrains added
-
-
 public class NaironUserDTO {
 
-
         @Email
+        @NotNull
         private String email;
 
+        @NotNull
         private String phoneNumber;
 
         @NotNull
@@ -96,7 +95,6 @@ public class NaironUserDTO {
 
     @Override
     public String toString() {
-
         final StringBuilder sb = new StringBuilder("NaironUserDTO{");
         sb.append("email='").append(email).append('\'');
         sb.append(", phoneNumber='").append(phoneNumber).append('\'');
