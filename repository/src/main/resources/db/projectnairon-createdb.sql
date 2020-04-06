@@ -4,15 +4,7 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `mydb` ;
 
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 -- -----------------------------------------------------
 -- Schema nairondb
 -- -----------------------------------------------------
@@ -23,6 +15,18 @@ DROP SCHEMA IF EXISTS `nairondb` ;
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `nairondb` DEFAULT CHARACTER SET utf8 ;
 USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`roles`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `nairondb`.`roles` ;
+
+CREATE TABLE IF NOT EXISTS `nairondb`.`roles` (
+  `roles_id` INT NOT NULL AUTO_INCREMENT,
+  `roles_name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`roles_id`))
+ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
 -- Table `nairondb`.`nairon_user`
@@ -46,19 +50,24 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`roles`
+-- Table `mydb`.`roles_has_nairon_user`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`roles` ;
+DROP TABLE IF EXISTS `nairondb`.`roles_has_nairon_user` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`roles` (
-  `roles_id` INT NOT NULL AUTO_INCREMENT,
-  `roles_name` VARCHAR(45) NOT NULL,
-  `nairon_user_email` VARCHAR(100) NOT NULL,
-  PRIMARY KEY (`roles_id`),
-  INDEX `fk_roles_nairon_user_idx` (`nairon_user_email` ASC),
-  CONSTRAINT `fk_roles_nairon_user`
-    FOREIGN KEY (`nairon_user_email`)
-    REFERENCES `nairondb`.`nairon_user` (`email`)
+CREATE TABLE IF NOT EXISTS `nairondb`.`roles_has_nairon_user` (
+  `roles_roles_id` INT NOT NULL,
+  `nairon_user__id` INT(10) NOT NULL,
+  PRIMARY KEY (`roles_roles_id`, `nairon_user__id`),
+  INDEX `fk_roles_has_nairon_user_nairon_user1_idx` (`nairon_user__id` ASC),
+  INDEX `fk_roles_has_nairon_user_roles_idx` (`roles_roles_id` ASC),
+  CONSTRAINT `fk_roles_has_nairon_user_roles`
+    FOREIGN KEY (`roles_roles_id`)
+    REFERENCES `nairondb`.`roles` (`roles_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_roles_has_nairon_user_nairon_user1`
+    FOREIGN KEY (`nairon_user__id`)
+    REFERENCES `nairondb`.`nairon_user` (`nairon_user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
