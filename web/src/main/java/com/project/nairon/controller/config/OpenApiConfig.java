@@ -15,13 +15,14 @@ import io.swagger.v3.oas.models.info.Info;
  *
  */
 @Configuration
-public class OpenApiConfig  {                                    
-	 @Bean
+public class OpenApiConfig  {
+
+		 @Bean
 	    public OpenAPI customOpenAPI() {
-	        return new OpenAPI()
-	                .components(new Components())
-	                .info(new Info().title("Nairon Application API").description(
-	                        "This is Nairon API Documentation using springdoc-openapi and OpenAPI 3 . Developed By Gbemi Google").version("Version 1.0.0"));
+			return new OpenAPI()
+				.components(new Components())
+				.info(new Info().title("Nairon Application API").description(
+						"This is Nairon API Documentation using springdoc-openapi and OpenAPI 3 . Developed By Gbemi Google").version("Version 1.0.0"));
 	    }
     
 
