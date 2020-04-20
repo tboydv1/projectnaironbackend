@@ -2,6 +2,10 @@ package com.project.nairon.models.advert;
 
 import javax.persistence.*;
 
+/**
+ * @author tobi
+ */
+
 @Entity
 public class AdvertAnswer {
 

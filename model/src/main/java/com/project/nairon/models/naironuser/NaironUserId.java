@@ -3,6 +3,10 @@ package com.project.nairon.models.naironuser;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * @author tobi
+ */
+
 public class NaironUserId implements Serializable {
 
     private Long naironUserId;

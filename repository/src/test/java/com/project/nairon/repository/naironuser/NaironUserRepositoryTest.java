@@ -9,6 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
+/**
+ * @author tobi
+ */
+
+
 @SpringBootTest(classes = RepositoryConfig.class)
 //@Sql(scripts = {"classpath:/db/insert-users.sql"})
 class NaironUserRepositoryTest {

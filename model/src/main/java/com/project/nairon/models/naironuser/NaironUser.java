@@ -2,6 +2,11 @@ package com.project.nairon.models.naironuser;
 
 import javax.persistence.*;
 
+/**
+ * @author tobi
+ */
+
+
 @Entity
 @Table(name =  "nairon_user")
 //@IdClass(NaironUserId.class)

@@ -23,8 +23,6 @@ import com.project.nairon.service.advertiser.AdvertiserWalletService;
  *
  */
 
-	
-
 @SpringBootTest(classes = ServiceConfig.class)
 class AdvertiserWalletServiceTest {
 	

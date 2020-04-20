@@ -5,6 +5,10 @@ import com.project.nairon.models.naironuser.NaironUser;
 
 import javax.persistence.*;
 
+/**
+ * @author tobi
+ */
+
 @Entity
 public class Admin {
 

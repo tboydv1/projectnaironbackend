@@ -13,6 +13,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.*;
 
+
+/**
+ * @author tobi
+ */
+
 @SpringBootTest(classes = ServiceConfig.class)
 class NaironUserServiceImplTest {
 

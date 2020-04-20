@@ -4,6 +4,12 @@ package com.project.nairon.models.transaction;
 import javax.persistence.*;
 import java.sql.Date;
 
+
+/**
+ * @author tobi
+ */
+
+
 @Entity
 public class Transaction {
 

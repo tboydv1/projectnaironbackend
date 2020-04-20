@@ -2,7 +2,6 @@
  * 
  */
 package com.project.nairon.repository.test;
-import org.junit.runner.RunWith;
 
 import static org.junit.jupiter.api.Assertions.*;
 
