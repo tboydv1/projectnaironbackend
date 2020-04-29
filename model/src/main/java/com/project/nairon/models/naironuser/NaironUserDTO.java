@@ -4,6 +4,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
+/**
+ * @author tobi
+ */
 
 //web validation constrains added
 public class NaironUserDTO {
@@ -18,7 +21,6 @@ public class NaironUserDTO {
         @NotNull
         private String password;
 
-        @NotNull
         private String fullname;
 
         private String businessSector;
@@ -26,6 +28,7 @@ public class NaironUserDTO {
         private String businessName;
 
         private String gender;
+
 
         private String role;
 

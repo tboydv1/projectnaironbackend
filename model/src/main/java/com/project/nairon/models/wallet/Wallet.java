@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.project.nairon.models.advertiser;
+package com.project.nairon.models.wallet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,8 +13,8 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="advertiser_wallet")
-public class AdvertiserWallet {
+@Table(name="cash_wallet")
+public class Wallet {
 
 	@Id
 	@Column(name = "wallet_id")
@@ -22,15 +22,26 @@ public class AdvertiserWallet {
 
 	@Column(name="wallet_balance")
 	private double walletBalance;
-	
-	
-	
-	public AdvertiserWallet() {
+
+	private String type;
+
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
+
+	public Wallet() {
 		super();
 	}
 
 
-	public AdvertiserWallet(Long walletId, double walletBalance) {
+	public Wallet(Long walletId, double walletBalance) {
 		super();
 		this.walletId = walletId;
 		this.walletBalance = walletBalance;
