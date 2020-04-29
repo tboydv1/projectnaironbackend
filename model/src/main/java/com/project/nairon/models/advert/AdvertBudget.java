@@ -1,37 +1,33 @@
 package com.project.nairon.models.advert;
 
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import javax.persistence.*;
+import java.sql.Date;
 
 /**
  * @author tobi
  */
 
 @Entity
+@Table(name="advert_budget")
 public class AdvertBudget {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long advertBudgetId;
-
+    private Integer budgetId;
     private Double budgetAmount;
-
     private Double budgetBalance;
-
     private Double budgetPerDay;
+    private Date startDate;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "advert_id")
+    private Advert advert;
 
-    private String standingOrder;
-
-    public Long getAdvertBudgetId() {
-        return advertBudgetId;
+    public Integer getBudgetId() {
+        return budgetId;
     }
 
-    public void setAdvertBudgetId(Long advertBudgetId) {
-        this.advertBudgetId = advertBudgetId;
+    public void setBudgetId(Integer id) {
+        this.budgetId = id;
     }
 
     public Double getBudgetAmount() {
@@ -58,11 +54,32 @@ public class AdvertBudget {
         this.budgetPerDay = budgetPerDay;
     }
 
-    public String getStandingOrder() {
-        return standingOrder;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setStandingOrder(String standingOrder) {
-        this.standingOrder = standingOrder;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Advert getAdvert() {
+        return advert;
+    }
+
+    public void setAdvert(Advert advert) {
+        this.advert = advert;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("AdvertBudget{");
+        sb.append("budgetId=").append(budgetId);
+        sb.append(", budgetAmount=").append(budgetAmount);
+        sb.append(", budgetBalance=").append(budgetBalance);
+        sb.append(", budgetPerDay=").append(budgetPerDay);
+        sb.append(", startDate=").append(startDate);
+        sb.append(", advert=").append(advert);
+        sb.append('}');
+        return sb.toString();
     }
 }

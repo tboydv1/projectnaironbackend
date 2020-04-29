@@ -39,7 +39,7 @@ public class NaionUserController {
     }
 
 
-    @PostMapping("/start")
+    @PostMapping("/create")
     public ResponseEntity<NaironUser> registerUserAccount(@RequestBody NaironUserDTO naironUserDTO){
 
         logger.info("Registration user account with information: {}"+ naironUserDTO);

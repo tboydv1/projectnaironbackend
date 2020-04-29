@@ -9,13 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import javax.transaction.Transactional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 /**
  * @author tobi
  */
 
 
 @SpringBootTest(classes = RepositoryConfig.class)
-//@Sql(scripts = {"classpath:/db/insert-users.sql"})
+@Sql(scripts = {"classpath:/db/insert-users.sql"})
 class NaironUserRepositoryTest {
 
 
@@ -39,10 +43,25 @@ class NaironUserRepositoryTest {
         newUser.setEmail("tobi@mail.com");
         newUser.setPhoneNumber("090494849958");
         newUser.setPassword("testpass");
+        newUser.setRole("user");
+        newUser.setGender("M");
 
         naironUserRepository.save(newUser);
 
     }
+
+    @Test
+    public void findUserByIdTest(){
+
+        NaironUser existingUser = naironUserRepository.findById(45).get();
+        assertThat(existingUser).isNotNull();
+
+        assertThat(existingUser.getFullname()).isEqualTo("Johnson remedy");
+
+
+    }
+
+
 
 
 }

@@ -21,7 +21,6 @@ public class NaironUserDTO {
         @NotNull
         private String password;
 
-        @NotNull
         private String fullname;
 
         private String businessSector;
@@ -29,6 +28,7 @@ public class NaironUserDTO {
         private String businessName;
 
         private String gender;
+
 
         private String role;
 

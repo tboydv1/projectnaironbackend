@@ -17,11 +17,10 @@ public class NaironUserServiceImpl implements NaironUserService {
     public NaironUser registerNewUserAccount(NaironUserDTO naironUserDTO) {
 
         NaironUser naironUser = new NaironUser();
-        naironUser.setFullname(naironUserDTO.getFullname());
-        naironUser.setPassword(naironUserDTO.getPassword());
         naironUser.setEmail(naironUserDTO.getEmail());
         naironUser.setPassword(naironUserDTO.getPassword());
         naironUser.setPhoneNumber(naironUserDTO.getPhoneNumber());
+        naironUser.setRole("USER");
 
         return naironUserRepository.save(naironUser);
     }

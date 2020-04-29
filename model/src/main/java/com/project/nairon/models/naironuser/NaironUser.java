@@ -8,46 +8,26 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name =  "nairon_user")
-//@IdClass(NaironUserId.class)
+@Table(uniqueConstraints =
+@UniqueConstraint(columnNames = {"email", "phoneNumber"}))
 public class NaironUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "nairon_user_id")
-    private Long naironUserId;
-
-//    @Id
-    @Column(name = "email")
+    private Integer userId;
     private String email;
-
-    @Column(name = "phone_number")
     private String phoneNumber;
-
-    @Column(name = "password")
     private String password;
-
-    @Column(name = "full_name")
     private String fullname;
-
-    @Column(name = "business_sector")
-    private String businessSector;
-
-    @Column(name = "business_name")
-    private String businessName;
-
-    @Column(name = "gender")
     private String gender;
-
-    @Column(name = "role")
     private String role;
 
-    public Long getNaironUserId() {
-        return naironUserId;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setNaironUserId(Long naironUserId) {
-        this.naironUserId = naironUserId;
+    public void setUserId(Integer naironUserId) {
+        this.userId = naironUserId;
     }
 
     public String getEmail() {
@@ -82,21 +62,6 @@ public class NaironUser {
         this.fullname = fullname;
     }
 
-    public String getBusinessSector() {
-        return businessSector;
-    }
-
-    public void setBusinessSector(String businessSector) {
-        this.businessSector = businessSector;
-    }
-
-    public String getBusinessName() {
-        return businessName;
-    }
-
-    public void setBusinessName(String businessName) {
-        this.businessName = businessName;
-    }
 
     public String getGender() {
         return gender;
