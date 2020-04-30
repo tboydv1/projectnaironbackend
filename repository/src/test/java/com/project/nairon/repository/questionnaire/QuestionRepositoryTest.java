@@ -13,6 +13,11 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.util.logging.Logger;
 
+/**
+ * @Oluwatobi
+ *
+ */
+
 @SpringBootTest(classes = RepositoryConfig.class)
 @Sql(scripts = {"classpath:/db/insert-question.sql"})
 class QuestionRepositoryTest {

@@ -6,6 +6,12 @@ import com.project.nairon.repository.naironuser.NaironUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+/**
+ * @author oluwatobi
+ */
+
 @Service
 public class NaironUserServiceImpl implements NaironUserService {
 
@@ -23,5 +29,10 @@ public class NaironUserServiceImpl implements NaironUserService {
         naironUser.setRole("USER");
 
         return naironUserRepository.save(naironUser);
+    }
+
+    @Override
+    public List<NaironUser> findAll() {
+        return naironUserRepository.findAll();
     }
 }

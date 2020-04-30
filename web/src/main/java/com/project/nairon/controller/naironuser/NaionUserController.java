@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
+import java.util.List;
 
 import java.util.logging.Logger;
 
@@ -18,7 +20,7 @@ import java.util.logging.Logger;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 @Tag(name = "Nairon Users", description = "Nairon User API Service By Rabbi")
 public class NaionUserController {
 
@@ -29,9 +31,10 @@ public class NaionUserController {
     private NaironUserService naironUserService;
 
 
-    @GetMapping("/")
-    public String test() {
-        return "Application is live and running";
+    @GetMapping("/all")
+    public ResponseEntity<List<NaironUser>> test() {
+
+        return new ResponseEntity<>(naironUserService.findAll(), HttpStatus.OK);
     }
 
     @PostMapping("/create")
