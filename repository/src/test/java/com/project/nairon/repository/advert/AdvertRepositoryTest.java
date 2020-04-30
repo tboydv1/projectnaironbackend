@@ -17,6 +17,11 @@ import java.util.logging.Logger;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author Oluwatobi
+ *
+ */
+
 @SpringBootTest(classes = RepositoryConfig.class)
 @Sql(scripts = {"classpath:/db/insert-users.sql","classpath:/db/insert-adverts.sql" })
 class AdvertRepositoryTest {
@@ -62,14 +67,13 @@ class AdvertRepositoryTest {
 
         //create a budget
         AdvertBudget budget1 = new AdvertBudget();
-        budget1.setAdvert(advert1);
         budget1.setBudgetAmount(40000.00);
         budget1.setBudgetBalance(0.0);
         budget1.setBudgetPerDay(500.00);
 
 
         //set the advert budget
-        advert1.setAdvertBudgetId(budget1);
+        advert1.setAdvertBudget(budget1);
 
         advertRepository.save(advert1);
 

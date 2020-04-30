@@ -27,15 +27,7 @@ CREATE TABLE IF NOT EXISTS `nairondb`.`advert_budget` (
   `budget_balance` DOUBLE NOT NULL,
   `start_date` DATETIME  NULL,
   `budget_per_day` DOUBLE NOT NULL,
-  `advert_id` INT(11) NOT NULL,
-    PRIMARY KEY (`budget_id`),
-    INDEX `fk_advert_advert_budget1_idx` (`advert_id` ASC),
-    CONSTRAINT `fk_advert_advert_budget1`
-    FOREIGN KEY (`advert_id`)
-      REFERENCES `nairondb`.`advert_budget` (`budget_id`)
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION
-    )
+    PRIMARY KEY (`budget_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
@@ -79,6 +71,7 @@ CREATE TABLE IF NOT EXISTS `nairondb`.`advert` (
   `isp_technology` VARCHAR(50) NULL,
   `product_unique_desc` VARCHAR(140) NULL,
   `display_format` VARCHAR(45) NULL,
+  `budget_id` INT(11) DEFAULT NULL,
   PRIMARY KEY (`advert_id`),
 
   INDEX `fk_advert_nairon_user1_idx` (`user_id` ASC),
@@ -86,7 +79,12 @@ CREATE TABLE IF NOT EXISTS `nairondb`.`advert` (
     FOREIGN KEY (`user_id`)
     REFERENCES `nairondb`.`nairon_user` (`user_id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_advert_budget_id1`
+      FOREIGN KEY (`budget_id`)
+      REFERENCES `nairondb`.`advert_budget` (`budget_id`)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
