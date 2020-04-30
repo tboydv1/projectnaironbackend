@@ -52,7 +52,6 @@
 			<artifactId>spring-security-oauth2-jose</artifactId>
 		</dependency>
 
-
 <!--			Web-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -60,12 +59,18 @@
 		</dependency>
 
 
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.10</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
