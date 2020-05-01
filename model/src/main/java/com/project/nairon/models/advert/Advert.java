@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.project.nairon.models.naironuser.NaironUser;
 import com.project.nairon.models.questionnaire.Questionnaire;
 import lombok.Data;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -38,12 +40,17 @@ public class Advert {
     private String desktopBrands;
     private String targetLocation;
 
+    @CreationTimestamp
+    private Date createdOn;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private NaironUser userId;
 
-    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @OneToOne()
+//    @Cascade({CascadeType.SAVE_UPDATE})
     @JoinColumn(name = "budget_id")
+    @JsonManagedReference
     private AdvertBudget advertBudget;
 
 }
