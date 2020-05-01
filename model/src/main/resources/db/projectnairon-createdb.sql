@@ -62,6 +62,7 @@ CREATE TABLE IF NOT EXISTS `nairondb`.`advert` (
   `target_location` VARCHAR(500) NOT NULL,
   `gender` VARCHAR(11) NOT NULL,
   `placement_type` VARCHAR(45) NOT NULL,
+  `created_on` DATETIME NOT NULL ,
   `headlines` VARCHAR(500) NULL,
   `image_url` VARCHAR(250) NULL,
   `business_categories` VARCHAR(250) NULL,
