@@ -26,28 +26,4 @@ public class Advertiser {
     @JoinColumn(name = "walet_id")
     private Wallet wallet;
 
-
-    public Long getAdvertiserId() {
-        return advertiserId;
-    }
-
-    public void setAdvertiserId(Long advertiserId) {
-        this.advertiserId = advertiserId;
-    }
-
-    public NaironUser getNaironUserId() {
-        return naironUserId;
-    }
-
-    public void setNaironUserId(NaironUser naironUserId) {
-        this.naironUserId = naironUserId;
-    }
-
-    public Wallet getWallet() {
-        return wallet;
-    }
-
-    public void setWallet(Wallet wallet) {
-        this.wallet = wallet;
-    }
 }

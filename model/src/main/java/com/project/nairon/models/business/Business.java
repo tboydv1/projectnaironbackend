@@ -19,39 +19,9 @@ public class Business {
     private String name;
     private String websiteUrl;
     @OneToOne
-    private BusinessSector businessSectorId;
+    private BusinessCategory businessSectorId;
     @ManyToOne
     private NaironUser userId;
 
-    public BusinessSector getBusinessSectorId() {
-        return businessSectorId;
-    }
 
-    public void setBusinessSectorId(BusinessSector businessSectorId) {
-        this.businessSectorId = businessSectorId;
-    }
-
-    public Integer getBusinessId() {
-        return businessId;
-    }
-
-    public void setBusinessId(Integer businessId) {
-        this.businessId = businessId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getWebsiteUrl() {
-        return websiteUrl;
-    }
-
-    public void setWebsiteUrl(String websiteUrl) {
-        this.websiteUrl = websiteUrl;
-    }
 }

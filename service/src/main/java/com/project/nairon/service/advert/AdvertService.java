@@ -6,7 +6,6 @@ package com.project.nairon.service.advert;
  */
 
 import com.project.nairon.models.advert.Advert;
-import com.project.nairon.models.advert.AdvertDTO;
 
 import java.sql.Date;
 import java.util.List;

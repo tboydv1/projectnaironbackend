@@ -1,17 +1,17 @@
 package com.project.nairon.models.advert;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import com.project.nairon.models.business.BusinessCategory;
 import com.project.nairon.models.naironuser.NaironUser;
-import com.project.nairon.models.questionnaire.Questionnaire;
+import com.project.nairon.models.questionnaire.Device;
+import com.project.nairon.models.questionnaire.Location;
 import lombok.Data;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 /**
  * @author tobi
@@ -23,6 +23,7 @@ public class Advert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer advertId;
+
     private String title;
     private String ageRange;
     private String gender;
@@ -32,25 +33,40 @@ public class Advert {
     private String displayFormat;
     private String ispTechnology;
     private String productUniqueDesc;
-    private String businessCategories;
     private Date startDate;
     private Date endDate;
-    private String devices;
-    private String mobileBrands;
-    private String desktopBrands;
-    private String targetLocation;
-
     @CreationTimestamp
     private Date createdOn;
 
-    @ManyToOne
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "advert_has_business_category",
+            joinColumns = @JoinColumn(name = "advert_id"),
+    inverseJoinColumns = @JoinColumn(name = "business_category_id"))
+    private List<BusinessCategory> businessCategories;
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "advert_has_device",
+            joinColumns = @JoinColumn(name = "advert_id"),
+            inverseJoinColumns = @JoinColumn(name = "device_id"))
+    private List<Device> deviceList;
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "advert_has_location",
+            joinColumns = @JoinColumn(name = "advert_id"),
+            inverseJoinColumns = @JoinColumn(name = "location_id")
+    )
+    private List<Location> locationList;
+
+
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id")
     private NaironUser userId;
 
-    @OneToOne()
-//    @Cascade({CascadeType.SAVE_UPDATE})
+    @OneToOne(cascade={CascadeType.ALL})
     @JoinColumn(name = "budget_id")
-    @JsonManagedReference
     private AdvertBudget advertBudget;
 
 }

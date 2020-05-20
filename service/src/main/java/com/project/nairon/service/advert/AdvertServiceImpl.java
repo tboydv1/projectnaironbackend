@@ -6,7 +6,6 @@ package com.project.nairon.service.advert;
  */
 
 import com.project.nairon.models.advert.Advert;
-import com.project.nairon.models.advert.AdvertDTO;
 import com.project.nairon.repository.advert.AdvertRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,6 +61,6 @@ public class AdvertServiceImpl implements AdvertService {
 
     @Override
     public List<Advert> findAll() {
-        return advertRepository.findAll();
+        return (List<Advert>) advertRepository.findAll();
     }
 }

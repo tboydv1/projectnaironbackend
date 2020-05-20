@@ -4,6 +4,7 @@ import com.project.nairon.models.naironuser.NaironUser;
 import com.project.nairon.models.naironuser.NaironUserDTO;
 import com.project.nairon.service.naironuser.NaironUserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,27 +21,20 @@ import java.util.logging.Logger;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("/api/user")
 @Tag(name = "Nairon Users", description = "Nairon User API Service By Rabbi")
+@Slf4j
 public class NaionUserController {
 
-    Logger logger = Logger.getLogger(getClass().getName());
 
 
     @Autowired
     private NaironUserService naironUserService;
 
 
-    @GetMapping("/all")
-    public ResponseEntity<List<NaironUser>> test() {
-
-        return new ResponseEntity<>(naironUserService.findAll(), HttpStatus.OK);
-    }
-
     @PostMapping("/create")
     public ResponseEntity<NaironUser> registerUserAccount(@RequestBody NaironUserDTO naironUserDTO){
 
-        logger.info("Registration user account with information: {}"+ naironUserDTO);
+        log.info("Registration user account with information: {}", naironUserDTO);
 
         NaironUser registered = naironUserService.registerNewUserAccount(naironUserDTO);
 

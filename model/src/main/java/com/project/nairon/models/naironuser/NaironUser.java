@@ -1,5 +1,7 @@
 package com.project.nairon.models.naironuser;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 /**
@@ -10,6 +12,7 @@ import javax.persistence.*;
 @Entity
 @Table(uniqueConstraints =
 @UniqueConstraint(columnNames = {"email", "phoneNumber"}))
+@Data
 public class NaironUser {
 
     @Id
@@ -22,61 +25,12 @@ public class NaironUser {
     private String gender;
     private String role;
 
-    public Integer getUserId() {
-        return userId;
-    }
+    public NaironUser(){
 
-    public void setUserId(Integer naironUserId) {
-        this.userId = naironUserId;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFullname() {
-        return fullname;
-    }
-
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+        this.role = "ROLE_USER";
     }
 
 
-    public String getGender() {
-        return gender;
-    }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 }
 

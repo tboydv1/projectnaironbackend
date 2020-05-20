@@ -27,9 +27,11 @@ public class AdvertBudget {
     private Double budgetPerDay;
     private Date startDate;
 
-    @OneToOne(mappedBy = "advertBudget")
-    @JsonBackReference
+    @OneToOne(mappedBy = "advertBudget", cascade={CascadeType.ALL})
+    @ToString.Exclude
     private Advert advert;
+
+
     public AdvertBudget(){
 
         budgetBalance = 0.0;

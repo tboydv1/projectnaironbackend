@@ -5,10 +5,15 @@ package com.project.nairon.models.questionnaire;
  *
  */
 
+import lombok.Data;
+
 import javax.persistence.*;
+import java.awt.*;
+import java.util.List;
 
 @Entity
 @Table(name = "question")
+@Data
 public class Question {
 
 
@@ -26,70 +31,17 @@ public class Question {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "choice")
-    private String choice;
-
     @Column(name = "advert_property")
     private String advertProperty;
+
+    @ElementCollection
+    @CollectionTable(name = "question_options",joinColumns = @JoinColumn(name = "question_id"))
+    @Column(name = "choice")
+    private List<String> choices;
 
     @ManyToOne
     @JoinColumn(name = "questionnaire_id")
     private Questionnaire questionnaireId;
 
 
-    public Integer getQuestionId() {
-        return questionId;
-    }
-
-    public void setQuestionId(Integer questionId) {
-        this.questionId = questionId;
-    }
-
-    public String getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    public Integer getPageLevel() {
-        return pageLevel;
-    }
-
-    public void setPageLevel(Integer order) {
-        this.pageLevel = order;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getChoice() {
-        return choice;
-    }
-
-    public void setChoice(String option) {
-        this.choice = option;
-    }
-
-    public String getAdvertProperty() {
-        return advertProperty;
-    }
-
-    public void setAdvertProperty(String advertProperty) {
-        this.advertProperty = advertProperty;
-    }
-
-    public Questionnaire getQuestionnaireId() {
-        return questionnaireId;
-    }
-
-    public void setQuestionnaireId(Questionnaire questionnaireId) {
-        this.questionnaireId = questionnaireId;
-    }
 }
