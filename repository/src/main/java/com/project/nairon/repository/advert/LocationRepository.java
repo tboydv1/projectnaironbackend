@@ -5,7 +5,7 @@ package com.project.nairon.repository.advert;
  *
  */
 
-import com.project.nairon.models.questionnaire.Location;
+import com.project.nairon.models.advert.Location;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 

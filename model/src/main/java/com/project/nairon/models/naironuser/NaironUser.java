@@ -17,17 +17,17 @@ public class NaironUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId;
+    @Column(name="id")
+    private Integer id;
     private String email;
     private String phoneNumber;
     private String password;
-    private String fullname;
+    private String fullName;
     private String gender;
-    private String role;
 
     public NaironUser(){
 
-        this.role = "ROLE_USER";
+
     }
 
 

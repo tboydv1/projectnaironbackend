@@ -1,10 +1,10 @@
 package com.project.nairon.repository.questionnaire;
 
-import com.project.nairon.models.questionnaire.Device;
+import com.project.nairon.models.reference.RefMobileDevice;
 import com.project.nairon.models.questionnaire.Question;
 import com.project.nairon.models.questionnaire.Questionnaire;
 import com.project.nairon.repository.RepositoryConfig;
-import com.project.nairon.repository.advert.DeviceRepository;
+import com.project.nairon.repository.advert.RefAdCreationRepo;
 import com.project.nairon.repository.advert.QuestionRepository;
 import com.project.nairon.repository.advert.QuestionnaireRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +33,7 @@ class QuestionRepositoryTest {
     QuestionnaireRepository questionnaireRepository;
 
     @Autowired
-    DeviceRepository deviceRepository;
+    RefAdCreationRepo refAdCreationRepo;
 
     Logger logger = Logger.getLogger(getClass().getName());
 
@@ -50,12 +50,17 @@ class QuestionRepositoryTest {
         logger.info("Existing questionnaire");
 
 
+
+        List<Question> questionList = new ArrayList<>();
         Question question = new Question();
         question.setPageLevel(9);
         question.setQuestion("Is This a new Question? ");
         question.setDescription("This question has a description");
-        question.setQuestionnaireId(questionnaire);
+//        question.setQuestionnaireId(questionnaire);
         question.setAdvertProperty("Adverts");
+
+        questionList.add(question);
+
 
         List<String> choices = new ArrayList<>();
 
@@ -75,9 +80,9 @@ class QuestionRepositoryTest {
     void saveDevices_thenSaveList(){
 
 
-        Device deviceList = new Device();
-        deviceList.setBrandName("SAMSUNG");
-        deviceList.setType("MOBILE");
+        RefMobileDevice refMobileDeviceList = new RefMobileDevice();
+        refMobileDeviceList.setBrandName("SAMSUNG");
+//        refMobileDeviceList.setType("MOBILE");
 
         List<String> version = new ArrayList<>();
 
@@ -89,8 +94,8 @@ class QuestionRepositoryTest {
         version.add("S7");
         version.add("S3");
 
-        deviceList.setVersion(version);
-        deviceRepository.save(deviceList);
+        refMobileDeviceList.setVersion(version);
+
 
     }
 

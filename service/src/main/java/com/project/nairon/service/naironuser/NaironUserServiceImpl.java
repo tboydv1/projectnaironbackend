@@ -26,7 +26,7 @@ public class NaironUserServiceImpl implements NaironUserService {
         naironUser.setEmail(naironUserDTO.getEmail());
         naironUser.setPassword(naironUserDTO.getPassword());
         naironUser.setPhoneNumber(naironUserDTO.getPhoneNumber());
-        naironUser.setRole("USER");
+//        naironUser.setRole("USER");
 
         return naironUserRepository.save(naironUser);
     }

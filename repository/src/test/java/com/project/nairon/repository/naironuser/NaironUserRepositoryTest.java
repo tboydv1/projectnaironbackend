@@ -39,11 +39,10 @@ class NaironUserRepositoryTest {
 
         NaironUser newUser = new NaironUser();
 
-        newUser.setFullname("Oluwatobi Omotosho");
+        newUser.setFullName("Oluwatobi Omotosho");
         newUser.setEmail("tobi@mail.com");
         newUser.setPhoneNumber("090494849958");
         newUser.setPassword("testpass");
-        newUser.setRole("user");
         newUser.setGender("M");
 
         naironUserRepository.save(newUser);
@@ -56,7 +55,7 @@ class NaironUserRepositoryTest {
         NaironUser existingUser = naironUserRepository.findById(45).get();
         assertThat(existingUser).isNotNull();
 
-        assertThat(existingUser.getFullname()).isEqualTo("Johnson remedy");
+        assertThat(existingUser.getFullName()).isEqualTo("Johnson remedy");
 
 
     }

@@ -12,7 +12,6 @@ import java.awt.*;
 import java.util.List;
 
 @Entity
-@Table(name = "question")
 @Data
 public class Question {
 
@@ -42,6 +41,8 @@ public class Question {
     @ManyToOne
     @JoinColumn(name = "questionnaire_id")
     private Questionnaire questionnaireId;
+
+
 
 
 }

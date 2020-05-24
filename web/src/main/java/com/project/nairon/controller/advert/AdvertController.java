@@ -18,19 +18,4 @@ import java.util.List;
 public class AdvertController {
 
 
-    @GetMapping("/test")
-    public @ResponseBody
-    List<String> createAdvert(){
-
-        List<String> result = new ArrayList<>();
-
-        result.add("A");
-        result.add("B");
-        result.add("C");
-        result.add("D");
-        result.add("E");
-
-        return result;
-    }
-
 }

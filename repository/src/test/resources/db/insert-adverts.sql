@@ -1,12 +1,13 @@
 SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE advert;
-TRUNCATE TABLE advert_budget;
+TRUNCATE TABLE ad_budget;
+TRUNCATE TABLE ad_business_category;
+TRUNCATE TABLE ad_headlines;
+TRUNCATE TABLE ad_isp;
 SET FOREIGN_KEY_CHECKS = 1;
 
-INSERT INTO advert(advert_id, user_id, start_date, end_date, title, age_range,
-                   gender,placement_type, created_on, headlines, image_url,
-                   isp_technology, product_unique_desc, display_format, budget_id)
-VALUES ();
-
-INSERT INTO advert_budget(`budget_id`, `budget_amount`,`budget_balance`, `budget_per_day`)
-VALUES (12, 2500.0,0.0, 20.0);
+# INSERT INTO location(id, country, state)
+# # VALUES (21, 'Nigeria', 'Yaba', 'Lagos'),
+# #        (22, 'Nigeria', 'Mushin', 'Lagos'),
+# #        (23, 'Nigeria', 'Gbagada', 'Lagos'),
+# #        (24, 'Nigeria', 'Ebute metta', 'Lagos');

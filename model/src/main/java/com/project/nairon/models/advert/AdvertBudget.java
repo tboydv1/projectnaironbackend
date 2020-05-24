@@ -15,7 +15,7 @@ import java.sql.Date;
  */
 
 @Entity
-@Table(name="advert_budget")
+@Table(name="ad_budget")
 @Data
 public class AdvertBudget {
 
@@ -27,7 +27,8 @@ public class AdvertBudget {
     private Double budgetPerDay;
     private Date startDate;
 
-    @OneToOne(mappedBy = "advertBudget", cascade={CascadeType.ALL})
+    @OneToOne(cascade={CascadeType.ALL})
+    @JoinColumn(name= "advert_id")
     @ToString.Exclude
     private Advert advert;
 

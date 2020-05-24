@@ -3,10 +3,11 @@
  */
 package com.project.nairon.models.wallet;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.project.nairon.models.naironuser.NaironUser;
+import jdk.jfr.DataAmount;
+import lombok.Data;
+
+import javax.persistence.*;
 
 /**
  * @author gbemisola
@@ -14,6 +15,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="cash_wallet")
+@Data
 public class Wallet {
 
 	@Id
@@ -25,54 +27,11 @@ public class Wallet {
 
 	private String type;
 
+	private String name;
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-
-
-	public Wallet() {
-		super();
-	}
-
-
-	public Wallet(Long walletId, double walletBalance) {
-		super();
-		this.walletId = walletId;
-		this.walletBalance = walletBalance;
-	}
-	
-	
-	public Long getWalletId() {
-		return walletId;
-	}
-	public void setWalletId(Long wallet_id) {
-		this.walletId = wallet_id;
-	}
-	public double getWalletBalance() {
-		return walletBalance;
-	}
-	public void setWalletBalance(double wallet_balance) {
-		this.walletBalance = wallet_balance;
-	}
-
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("AdvertiserWallet [walletId=");
-		builder.append(walletId);
-		builder.append(", walletBalance=");
-		builder.append(walletBalance);
-		builder.append("]");
-		return builder.toString();
-	}
-	
+	@OneToOne()
+	@JoinColumn(name = "nairon_user_id", referencedColumnName = "id")
+	private NaironUser naironUser;
 	
 	
 }

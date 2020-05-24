@@ -11,15 +11,14 @@ import javax.persistence.*;
 import java.util.List;
 
 
-@Entity
-@Data
-public class BusinessCategory {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String name;
-    @OneToMany
-    private List<SubCategory> subCategoryList;
-
-}
+//@Entity
+//@Data
+//public class BusinessCategory {
+//
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Integer id;
+//    private String name;
+//
+//
+//}

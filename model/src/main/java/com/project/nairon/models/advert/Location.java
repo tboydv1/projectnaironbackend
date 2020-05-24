@@ -1,4 +1,4 @@
-package com.project.nairon.models.questionnaire;
+package com.project.nairon.models.advert;
 /*
  *@author tobi
  * created on 18/05/2020
@@ -24,6 +24,17 @@ public class Location {
     private Integer id;
     private String country;
     private String state;
-    private String city;
+
+    @ElementCollection
+    @CollectionTable(name = "city", joinColumns = @JoinColumn(name = "location_id"))
+    @Column(name = "city_name")
+    private List<String> cities;
+
+    @ManyToMany
+    @JoinTable(name = "advert_has_location",
+            joinColumns = @JoinColumn(name = "location_id"),
+            inverseJoinColumns = @JoinColumn(name = "advert_id")
+    )
+    private List<Advert> advertList;
 
 }

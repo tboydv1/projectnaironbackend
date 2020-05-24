@@ -1,9 +1,11 @@
 package com.project.nairon.repository.advert;
 
+import com.project.nairon.models.advert.AdHeadline;
 import com.project.nairon.models.advert.Advert;
 import com.project.nairon.models.advert.AdvertBudget;
-import com.project.nairon.models.questionnaire.Device;
-import com.project.nairon.models.questionnaire.Location;
+import com.project.nairon.models.reference.RefAdsCreation;
+import com.project.nairon.models.reference.RefMobileDevice;
+import com.project.nairon.models.advert.Location;
 import com.project.nairon.models.naironuser.NaironUser;
 import com.project.nairon.repository.RepositoryConfig;
 import com.project.nairon.repository.naironuser.NaironUserRepository;
@@ -14,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -27,7 +31,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(classes = RepositoryConfig.class)
 @Slf4j
-@Sql(scripts = {"classpath:/db/insert-users.sql","classpath:/db/insert-adverts.sql","classpath:/db/insert-location.sql","classpath:/db/insert-business_category.sql","classpath:/db/insert-device.sql" })
+@Sql(scripts = {"classpath:/db/insert-users.sql","classpath:/db/insert-adverts.sql","classpath:/db/insert-reference-data.sql"})
 class AdvertRepositoryTest {
 
     @Autowired
@@ -49,7 +53,7 @@ class AdvertRepositoryTest {
     LocationRepository locationRepository;
 
     @Autowired
-    DeviceRepository deviceRepository;
+    RefAdCreationRepo refAdCreationRepo;
 
 
 
@@ -62,7 +66,6 @@ class AdvertRepositoryTest {
 
     @Test
     public void createAdvertTest(){
-
         //Fetch a user from the database
         NaironUser existingUser = naironUserRepository.findById(45).get();
 
@@ -71,50 +74,83 @@ class AdvertRepositoryTest {
 
         //create an advert
         Advert advert1 = new Advert();
+        advert1.setId(7575);
         advert1.setAgeRange("18-60");
         advert1.setUserId(existingUser);
         advert1.setTitle("Jumbotrons");
         advert1.setPlacementType("Automatic");
         advert1.setGender("Male");
 
-
-
         //create a budget
         AdvertBudget budget1 = new AdvertBudget();
         budget1.setBudgetAmount(40000.00);
         budget1.setBudgetBalance(0.0);
         budget1.setBudgetPerDay(500.00);
+        budget1.setAdvert(advert1);
 
         //set the advert budget
         advert1.setAdvertBudget(budget1);
 
-        Location targetLocation = locationRepository.findById(21).get();
-        log.info("Advert location {}", targetLocation);
+        //create advert healine
+        AdHeadline adHeadline = new AdHeadline();
+        adHeadline.setHeadline1("Sample headline 1");
+        adHeadline.setHeadline2("Sample headline 2");
+        adHeadline.setDescription1("This a sample description");
+        adHeadline.setDescription1("This is another description");
+        adHeadline.setDisplayUrl("https://myads.com/myadstitlehere");
+        adHeadline.setImageUrl("https://cloud/imagestorage");
 
-        Device targetDevices = deviceRepository.findById(31).get();
-        log.info("Advert devices {}", targetDevices);
+        advert1.setAdHeadlineList(Collections.singletonList(adHeadline));
 
-        advert1.setLocationList(Collections.singletonList(targetLocation));
+        List<String> ispList = new ArrayList<>();
+        ispList.add("MTN");
+        ispList.add("AIRTEL");
+        ispList.add("GLO");
 
-        advert1.setDeviceList(Collections.singletonList(targetDevices));
+        advert1.setIspTechnologies(ispList);
 
-        log.info("Attempting save on advert object");
+        Location location = new Location();
+        location.setCountry("Nigeria");
+        location.setState("Lagos");
+
+        List<String> cities = new ArrayList<>();
+        cities.add("Yaba");
+        cities.add("Victoria Island");
+        cities.add("Palmgroove");
+
+        location.setCities(cities);
+
+        Optional<RefAdsCreation> referenceData = refAdCreationRepo.findById(500);
+
+        List<String> businessCategories = new ArrayList<>();
+
+
+        referenceData.ifPresent(reference -> {
+
+            log.info("reference data fetched");
+
+            assertThat(reference).isNotNull();
+
+            businessCategories.add(referenceData.get().getBusinessCategories().get(0));
+
+        });
+
+        log.info("Fetched reference data from the database {}", referenceData);
+
+        advert1.setAdBusinessCategories(businessCategories);
+
+        log.info("Advert object before saving --> {}",advert1);
+
+        //save advert object
         advertRepository.save(advert1);
 
-        logger.info("" + advert1);
-        logger.info("" + budget1);
 
-        Optional<Advert> savedAdvert = advertRepository.findById(advert1.getAdvertId());
-        Optional<AdvertBudget> savedBudget = advertBudgetRepository.findById(budget1.getBudgetId());
+        Optional<Advert> savedAdvert = advertRepository.findById(advert1.getId());
+        savedAdvert.ifPresent(advert -> {
+            assertThat(advert).isNotNull();
+        });
 
-        if(savedAdvert.isPresent()){
-
-            assertThat(savedAdvert.get()).isNotNull();
-            assertThat(savedBudget).get().isNotNull();
-
-        }
-
-
+        log.info("Fetched saved advert --> {}",savedAdvert.isPresent() ? savedAdvert.get() : "");
 
     }
 }
