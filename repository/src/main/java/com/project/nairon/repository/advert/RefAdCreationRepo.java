@@ -1,7 +1,6 @@
 package com.project.nairon.repository.advert;
 
 import com.project.nairon.models.reference.RefAdsCreation;
-import com.project.nairon.models.reference.RefMobileDevice;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 

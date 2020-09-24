@@ -18,28 +18,22 @@ public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "question_id")
-    private Integer questionId;
+    private Integer id;
 
-    @Column(name = "question")
     private String question;
 
-    @Column(name = "page_level")
     private Integer pageLevel;
 
-    @Column(name = "description")
     private String description;
 
-    @Column(name = "advert_property")
     private String advertProperty;
 
     @ElementCollection
     @CollectionTable(name = "question_options",joinColumns = @JoinColumn(name = "question_id"))
-    @Column(name = "choice")
     private List<String> choices;
 
     @ManyToOne
-    @JoinColumn(name = "questionnaire_id")
+    @JoinColumn()
     private Questionnaire questionnaireId;
 
 

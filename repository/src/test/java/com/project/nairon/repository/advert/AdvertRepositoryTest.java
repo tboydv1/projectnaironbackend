@@ -4,11 +4,10 @@ import com.project.nairon.models.advert.AdHeadline;
 import com.project.nairon.models.advert.Advert;
 import com.project.nairon.models.advert.AdvertBudget;
 import com.project.nairon.models.reference.RefAdsCreation;
-import com.project.nairon.models.reference.RefMobileDevice;
 import com.project.nairon.models.advert.Location;
 import com.project.nairon.models.naironuser.NaironUser;
 import com.project.nairon.repository.RepositoryConfig;
-import com.project.nairon.repository.naironuser.NaironUserRepository;
+import com.project.nairon.repository.customer.NaironUserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -67,7 +66,7 @@ class AdvertRepositoryTest {
     @Test
     public void createAdvertTest(){
         //Fetch a user from the database
-        NaironUser existingUser = naironUserRepository.findById(45).get();
+        Customer existingUser = naironUserRepository.findById(45).get();
 
         log.info("Fetched an existing user {}", existingUser);
         assertThat(existingUser).isNotNull();
